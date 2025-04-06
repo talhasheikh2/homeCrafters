@@ -29,138 +29,87 @@
         overflow-x: hidden;
       }
       
-      /* Header Styles */
-      header {
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        position: fixed;
-        width: 100%;
-        z-index: 1000;
-      }
-      
-      .navbar {
+     /* Navbar Styles */
+     .navbar {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1.5rem 5%;
-        max-width: 1400px;
-        margin: 0 auto;
+        padding: 1rem 2rem;
+        background-color: #2c3e50;
+        color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       }
       
       .brandlogo img {
-        height: 40px;
-        transition: transform 0.3s ease;
-      }
-      
-      .brandlogo img:hover {
-        transform: scale(1.05);
-      }
-      
-      .menu-toggle {
-        color: white;
-        font-size: 1.8rem;
-        cursor: pointer;
-        display: none;
+        height: 50px;
       }
       
       .menu {
         display: flex;
         list-style: none;
-        gap: 2rem;
       }
       
-      .menu li a {
+      .menu li {
+        margin: 0 1rem;
+        position: relative;
+      }
+      
+      .menu a {
         color: white;
         text-decoration: none;
         font-weight: 500;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-        position: relative;
+        transition: color 0.3s;
       }
       
-      .menu li a:after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: -5px;
-        left: 0;
-        background-color: white;
-        transition: width 0.3s ease;
-      }
-      
-      .menu li a:hover:after {
-        width: 100%;
-      }
-      
-      .dropdown {
-        position: relative;
+      .menu a:hover {
+        color: #3498db;
       }
       
       .dropdown-menu {
+        display: none;
         position: absolute;
-        top: 100%;
-        left: 0;
-        background: white;
-        width: 200px;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        transform: translateY(20px);
-        z-index: 100;
+        background-color: white;
+        min-width: 160px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        border-radius: 4px;
+        padding: 0.5rem 0;
       }
       
       .dropdown:hover .dropdown-menu {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
+        display: block;
       }
       
       .dropdown-menu li {
-        padding: 0.8rem 1rem;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        margin: 0;
       }
       
-      .dropdown-menu li a {
-        color: var(--dark);
+      .dropdown-menu a {
+        color: #333;
+        padding: 0.5rem 1rem;
+        display: block;
       }
       
-      .dropdown-menu li a:hover {
-        color: var(--primary);
+      .dropdown-menu a:hover {
+        background-color: #f1f1f1;
       }
       
-      .btnlog, .btnSin {
-        padding: 0.6rem 1.5rem;
-        border-radius: 50px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        margin-left: 1rem;
+      .cart {
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: transform 0.3s;
       }
       
-      .btnlog {
-        color: white;
-        border: 2px solid white;
+      .cart:hover {
+        transform: scale(1.1);
       }
       
-      .btnlog:hover {
-        background: white;
-        color: var(--primary);
+      .menu-toggle {
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: none;
       }
-      
-      .btnSin {
-        background: var(--accent);
-        color: white;
-        border: 2px solid var(--accent);
-      }
-      
-      .btnSin:hover {
-        background: transparent;
-        color: white;
-      }
-      
-      /* Hero Section */
+       /* Hero Section */
       .hero {
         background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../mainImages/bk8.jpg');
         background-size: cover;
@@ -317,13 +266,13 @@
     <header>
       <nav class="navbar">
         <div class="brandlogo">
-          <img src="../mainImages/logo.png" alt="HomeCrafters Logo" />
+          <img src="../mainImages/logo.png" alt="Hardware Store Logo">
         </div>
         <span class="menu-toggle">&#9776;</span>
         <ul class="menu">
           <li><a href="../index.html">Home</a></li>
-          <li><a href="./contact.html">About Us</a></li>
-          <li><a href="./contact.html">Contact Us</a></li>
+          <li><a href="contact.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
           <li class="dropdown">
             <a href="#">Products <i class="fas fa-chevron-down"></i></a>
             <ul class="dropdown-menu">
@@ -333,13 +282,10 @@
             </ul>
           </li>
         </ul>
-        <div>
-          <a href="./login.html" class="btnlog">LOGIN</a>
-          <a href="./login.html" class="btnSin">SIGN UP</a>
-        </div>
+        <div class="cart">&#128722; <span class="cart-count">0</span></div>
       </nav>
     </header>
-    
+       
     <div class="hero">
       <div class="heading animate__animated animate__fadeInDown">About Us</div>
     </div>
