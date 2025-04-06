@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel - Add Product</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.admin.css" />
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="max-w-lg w-full bg-white shadow-lg rounded-xl p-8">
+    <h1 class="text-3xl font-extrabold text-indigo-600 mb-6 text-center">Add a New Product</h1>
+    <form id="productForm" enctype="multipart/form-data">
+      <!-- Product Name -->
+      <div class="mb-5">
+        <label class="custom-label" for="name">Product Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="custom-input"
+          placeholder="Enter product name"
+          required
+        />
+      </div>
+
+      <!-- Product Price -->
+      <div class="mb-5">
+        <label class="custom-label" for="price">Price ($)</label>
+        <input
+          type="number"
+          id="price"
+          name="price"
+          class="custom-input"
+          placeholder="Enter product price"
+          required
+        />
+      </div>
+
+      <!-- Product Description -->
+      <div class="mb-5">
+        <label class="custom-label" for="description">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          class="custom-input"
+          placeholder="Enter product description"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+
+      <!-- Product Category -->
+      <!-- <div class="mb-5">
+        <label class="custom-label" for="category">Category</label>
+        <input
+          type="text"
+          id="category"
+          name="category"
+          class="custom-input"
+          placeholder="Enter product category"
+          required
+        />
+      </div> -->
+      <div class="mb-5">
+        <label class="custom-label" for="category">Category</label>
+        <select id="category" name="category" class="custom-input" required>
+          <option value="" disabled selected>Select a category</option>
+          <option value="electronic">Electronic</option>
+          <option value="hardware">Hardware</option>
+          <option value="sanitary">Sanitary</option>
+        </select>
+      </div>
+      
+
+      <!-- Product Image -->
+      <div class="mb-5">
+        <label class="custom-label" for="image">Upload Product Image</label>
+        <input
+          type="file"
+          id="image"
+          name="image"
+          class="custom-input"
+          required
+        />
+      </div>
+
+      <!-- Stock Quantity -->
+      <div class="mb-5">
+        <label class="custom-label" for="stock">Stock Quantity</label>
+        <input
+          type="number"
+          id="stock"
+          name="stock"
+          class="custom-input"
+          placeholder="Enter stock quantity"
+          required
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="w-full bg-indigo-500 text-white font-bold py-3 rounded-lg hover:bg-indigo-600 transition-all duration-200"
+      >
+        Add Product
+      </button>
+    </form>
+
+    <!-- Feedback Message -->
+    <p id="feedbackMessage" class="mt-4 text-center text-sm text-gray-600"></p>
+  </div>
+
+  <script src="script.admin.js"></script>
+</body>
+</html>

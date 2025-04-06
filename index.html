@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeCrafters - Build Your Dream Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-dark: #E15634;
+            --secondary: #004E89;
+            --dark: #292F36;
+            --light: #F7FFF7;
+            --accent: #FFD166;
+            --gray: #EDEDED;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        img{
+          width: 100%;
+          height: auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .brandlogo img {
+            height: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .menu li {
+            margin: 0 15px;
+            position: relative;
+        }
+        
+        .menu li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .menu li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .menu li a:hover:after {
+            width: 100%;
+        }
+        
+        .menu li a:hover {
+            color: var(--primary);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+            padding: 10px 0;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(5px);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            padding: 10px 20px;
+        }
+        
+        .dropdown-menu li a {
+            color: var(--dark);
+            font-size: 14px;
+        }
+        
+        .btnlog, .btnSin {
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .btnlog {
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btnlog:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btnSin {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btnSin:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./mainImages/bk8.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+        
+        .heading {
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+        
+        .hero-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Features Section */
+        .out-div {
+            display: flex;
+            justify-content: center;
+            margin: 50px auto;
+            max-width: 1200px;
+            gap: 30px;
+            padding: 0 20px;
+        }
+        
+        .orange, .blue {
+            flex: 1;
+            padding: 40px 30px;
+            border-radius: 15px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .orange {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        }
+        
+        .blue {
+            background: linear-gradient(135deg, var(--secondary), #0066A1);
+        }
+        
+        .orange:hover, .blue:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .orange i, .blue i {
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .content h1 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .content p {
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+        
+        .read-more-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: white;
+            color: var(--dark);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .orange .read-more-btn {
+            color: var(--primary-dark);
+        }
+        
+        .blue .read-more-btn {
+            color: var(--secondary);
+        }
+        
+        .read-more-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* About Section */
+        .about, .mission {
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .about {
+            background-color: var(--gray);
+        }
+        
+        .mission {
+            background-color: white;
+        }
+        
+        .left, .right {
+            flex: 1;
+            padding: 0 40px;
+        }
+        
+        .left h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .left hr {
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border: none;
+            margin-bottom: 30px;
+        }
+        
+        .left p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .right img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .right img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Products Section */
+        .maindiv {
+            position: relative;
+            margin: 100px 0;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            overflow: hidden;
+        }
+        
+        .upper-half {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: var(--primary);
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+            z-index: 1;
+        }
+        
+        .lower-half {
+            position: relative;
+            z-index: 2;
+            padding-top: 100px;
+        }
+        
+        .text-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+        
+        .text-container {
+            flex: 1;
+            max-width: 300px;
+            margin: 0 20px;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .text-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .text-container p {
+            font-size: 1rem;
+            color: var(--dark);
+        }
+        
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .image-container img {
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+        
+        .image-container img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Team Section */
+        .team {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 80px auto;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+        
+        .card {
+            width: 280px;
+            height: 350px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            z-index: 1;
+        }
+        
+        .card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        
+        .card:hover:before {
+            opacity: 1;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            color: white;
+        }
+        
+        .card:hover h2, .card:hover h4 {
+            color: white;
+        }
+        
+        .circle-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 25px;
+            border: 5px solid var(--gray);
+            transition: all 0.4s ease;
+        }
+        
+        .card:hover .circle-container {
+            border-color: white;
+            transform: scale(1.05);
+        }
+        
+        .circle-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+            transition: all 0.4s ease;
+        }
+        
+        .card h4 {
+            font-size: 1rem;
+            color: var(--primary);
+            font-weight: 500;
+            transition: all 0.4s ease;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        
+        footer p {
+            margin-bottom: 20px;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .heading {
+                font-size: 3.5rem;
+            }
+            
+            .out-div {
+                flex-direction: column;
+            }
+            
+            .about, .mission {
+                flex-direction: column;
+            }
+            
+            .left, .right {
+                padding: 20px;
+            }
+            
+            .right {
+                margin-top: 40px;
+            }
+            
+            .text-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .text-container {
+                margin-bottom: 20px;
+            }
+            
+            .image-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.5s ease;
+                z-index: 999;
+            }
+            
+            .menu.active {
+                left: 0;
+            }
+            
+            .menu li {
+                margin: 15px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+                z-index: 1000;
+            }
+            
+            .navbar .auth-buttons {
+                display: none;
+            }
+            
+            .heading {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="brandlogo">
+                    <img src="./mainImages/logo.png" alt="HomeCrafters Logo">
+                </div>
+                <span class="menu-toggle">&#9776;</span>
+                <ul class="menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="./pages/aboutus.html">About Us</a></li>
+                    <li><a href="./pages/contact.html">Contact Us</a></li>
+                    <li class="dropdown">
+                        <a href="#">Products <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="./pages/hardware.html">Hardware</a></li>
+                            <li><a href="./pages/electronic.html">Electronics</a></li>
+                            <li><a href="./pages/sanitry.html">Sanitary</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="./pages/login.html" class="btnlog">LOGIN</a>
+                    <a href="./pages/login.html" class="btnSin">SIGN UP</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="heading">HomeCrafters</div>
+            <p>Building dreams into reality with quality materials and expert craftsmanship</p>
+            <a href="./pages/aboutus.html" class="hero-btn">Explore Our Services</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="out-div">
+            <div class="orange">
+                <div>  
+                    <i class="fa-solid fa-screwdriver-wrench fa-2x"></i>
+                </div>
+                <div class="content">
+                    <h1>Our Tools</h1>
+                    <p>Explore our high-quality tools designed to make every project easier and more efficient!</p>
+                    <div><a href="./pages/aboutus.html" class="read-more-btn">Read More</a></div>
+                </div>
+            </div>
+            <div class="blue">
+                <div>
+                    <i class="fa-solid fa-truck-pickup fa-2x"></i>
+                </div>         
+                <div class="content">
+                    <h1>Best Construction</h1>
+                    <p>Your trusted partner in turning visions into solid foundations.</p>
+                    <div class="read"><a href="./pages/aboutus.html" class="read-more-btn">Read More</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="about">
+        <div class="container">
+            <div class="left">
+                <h1>Build Your Dream Home</h1>
+                <hr>
+                <p>HomeCrafters is your one-stop destination for all things related to home building and renovation. Our platform connects you with experienced contractors who specialize in constructing high-quality homes tailored to your specific needs. Whether you're looking to build a new house or remodel your current space, our expert contractors provide reliable and affordable services.</p>
+                <p>In addition to construction, we also offer access to top-tier hardware stores, ensuring you have all the materials you need for any project. From foundations to finishes, HomeCrafters supports you every step of the way. We prioritize customer satisfaction and quality workmanship, making your dream home a reality.</p>
+                <a href="./pages/aboutus.html" class="read-more-btn">Learn More</a>
+            </div>
+            <div class="right">
+                <img src="./mainImages/bk8.jpg" alt="Dream Home">
+            </div>
+        </div>
+    </section>
+
+    <section class="mission">
+        <div class="container">
+            <div class="left">
+                <img src="./mainImages/bk1.jpeg" alt="Power Tools">
+            </div>
+            <div class="right">
+                <h1>Power with the Best Tools</h1>
+                <hr>
+                <p>HomeCrafters offers a wide range of high-quality tools to help you with every stage of your building or renovation project. Whether you're a professional contractor or a DIY enthusiast, our collection includes everything from power tools to hand tools, ensuring you have the right equipment for the job.</p>
+                <p>We partner with trusted hardware stores to provide durable and reliable tools that make your work easier and more efficient. With HomeCrafters, you'll find the perfect tools to tackle any challenge, big or small. We aim to empower you to complete your projects with precision and confidence. Explore our selection and get the tools you need today!</p>
+                <a href="./pages/aboutus.html" class="read-more-btn">View Tools</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="maindiv">
+        <div class="upper-half"></div>
+        <div class="lower-half">
+            <div class="container">
+                <div class="text-row">
+                    <div class="text-container">
+                        <p>Our focus is on providing sturdy, high-performance hardware that professionals can trust for all their construction needs.</p>
+                    </div>
+                    <div class="text-container">
+                        <p>We source only the highest quality materials to ensure durability and longevity in every product we offer to our customers.</p>
+                    </div>
+                    <div class="text-container">
+                        <p>With decades of combined experience, our team knows exactly what builders need to complete projects successfully.</p>
+                    </div>
+                </div>
+                <div class="image-container">
+                    <img src="./mainImages/20.png" alt="Construction Materials">
+                    <img src="./mainImages/21.png" alt="Power Tools">
+                    <img src="./mainImages/16.png" alt="Hardware Products">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 50px;">Our Expert Team</h2>
+        <div class="team">
+            <div class="card" data-hover="./mainImages/2.png">
+                <div class="circle-container">
+                    <img src="./mainImages/1.png" alt="Profile 1">
+                </div>
+                <h2>Mahesh E U</h2>
+                <h4>Technical Lead</h4>
+            </div>
+            <div class="card" data-hover="./mainImages/8.png">
+                <div class="circle-container">
+                    <img src="./mainImages/6.png" alt="Profile 2">
+                </div>
+                <h2>Sarah Johnson</h2>
+                <h4>Design Specialist</h4>
+            </div>
+            <div class="card" data-hover="./mainImages/3.png">
+                <div class="circle-container">
+                    <img src="./mainImages/4.png" alt="Profile 3">
+                </div>
+                <h2>Michael Chen</h2>
+                <h4>Construction Expert</h4>
+            </div>
+        </div>
+        <div class="team">
+            <div class="card" data-hover="./mainImages/2.png">
+                <div class="circle-container">
+                    <img src="./mainImages/1.png" alt="Profile 4">
+                </div>
+                <h2>David Wilson</h2>
+                <h4>Project Manager</h4>
+            </div>
+            <div class="card" data-hover="./mainImages/8.png">
+                <div class="circle-container">
+                    <img src="./mainImages/6.png" alt="Profile 5">
+                </div>
+                <h2>Emily Rodriguez</h2>
+                <h4>Customer Relations</h4>
+            </div>
+            <div class="card" data-hover="./mainImages/3.png">
+                <div class="circle-container">
+                    <img src="./mainImages/4.png" alt="Profile 6">
+                </div>
+                <h2>James Thompson</h2>
+                <h4>Quality Assurance</h4>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            </div>
+            <p>&copy; 2025 HomeCrafters. All rights reserved.</p>
+            <p>Building dreams, one home at a time.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const menu = document.querySelector('.menu');
+        
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+        
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+                document.querySelector('.brandlogo img').style.height = '40px';
+            } else {
+                header.classList.remove('scrolled');
+                document.querySelector('.brandlogo img').style.height = '50px';
+            }
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Team Card Hover Effect
+        const cards = document.querySelectorAll('.card');
+        
+        cards.forEach(card => {
+            const hoverImage = card.getAttribute('data-hover');
+            const circleImg = card.querySelector('.circle-container img');
+            
+            card.addEventListener('mouseenter', () => {
+                if (hoverImage) {
+                    circleImg.src = hoverImage;
+                }
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                const originalImg = card.querySelector('.circle-container').getAttribute('data-original');
+                if (originalImg) {
+                    circleImg.src = originalImg;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

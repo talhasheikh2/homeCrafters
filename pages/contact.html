@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            color: #141329;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+    background-color: #141329;
+     }
+
+    .btnlog {
+    position: absolute;
+    left: 10px;
+    background-color: #f99c22;
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    bottom: 15px;
+     }
+
+    h1 {
+    margin: 0;
+    text-align: center;
+    color: #f2f2f2;
+    }
+
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .contact-form h2 {
+            margin-top: 0;
+        }
+
+        .contact-form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid  #fe9d20;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        .contact-form button {
+            background-color:  #fe9d20;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: #141329;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-details p {
+            margin: 10px 0;
+        }
+
+        .contact-details a {
+            color: #0078D7;
+            text-decoration: none;
+        }
+
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            text-align: center;
+            background-color: #141329;
+            color:#fe9d20;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div><a href="../index.html" class="btnlog">Back</a>
+        </div>
+        <h1>Contact Us</h1>
+    </header>
+
+    <div class="contact-container">
+        <div class="contact-form">
+            <h2>We'd Love to Hear From You</h2>
+            <form action="#" method="post">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" placeholder="Write your message here" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+        <div class="contact-details">
+            <h2>Our Contact Information</h2>
+            <p><strong>Address:</strong> 456 Mobile Plaza, Tech City, TC 12345</p>
+            <p><strong>Phone:</strong> <a href="tel:+19876543210">+1 987-654-3210</a></p>
+            <p><strong>Email:</strong> <a href="mailto:support@mobilestore.com">support@mobilestore.com</a></p>
+            <p><strong>Working Hours:</strong> Monday - Saturday: 10:00 AM - 8:00 PM</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 MobileStore. All Rights Reserved.</p>
+    </footer><script src="./script.js"></script>
+</body>
+</html>

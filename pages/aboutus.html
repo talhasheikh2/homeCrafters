@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeCrafters</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+      :root {
+        --primary: #3a86ff;
+        --secondary: #8338ec;
+        --accent: #ff006e;
+        --light: #f8f9fa;
+        --dark: #212529;
+        --gray: #6c757d;
+      }
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      
+      body {
+        background-color: #f5f7fa;
+        color: var(--dark);
+        overflow-x: hidden;
+      }
+      
+      /* Header Styles */
+      header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+      }
+      
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 5%;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      
+      .brandlogo img {
+        height: 40px;
+        transition: transform 0.3s ease;
+      }
+      
+      .brandlogo img:hover {
+        transform: scale(1.05);
+      }
+      
+      .menu-toggle {
+        color: white;
+        font-size: 1.8rem;
+        cursor: pointer;
+        display: none;
+      }
+      
+      .menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+      
+      .menu li a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      
+      .menu li a:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: white;
+        transition: width 0.3s ease;
+      }
+      
+      .menu li a:hover:after {
+        width: 100%;
+      }
+      
+      .dropdown {
+        position: relative;
+      }
+      
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: white;
+        width: 200px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        transform: translateY(20px);
+        z-index: 100;
+      }
+      
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      
+      .dropdown-menu li {
+        padding: 0.8rem 1rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      
+      .dropdown-menu li a {
+        color: var(--dark);
+      }
+      
+      .dropdown-menu li a:hover {
+        color: var(--primary);
+      }
+      
+      .btnlog, .btnSin {
+        padding: 0.6rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        margin-left: 1rem;
+      }
+      
+      .btnlog {
+        color: white;
+        border: 2px solid white;
+      }
+      
+      .btnlog:hover {
+        background: white;
+        color: var(--primary);
+      }
+      
+      .btnSin {
+        background: var(--accent);
+        color: white;
+        border: 2px solid var(--accent);
+      }
+      
+      .btnSin:hover {
+        background: transparent;
+        color: white;
+      }
+      
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../mainImages/bk8.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        padding-top: 80px;
+      }
+      
+      .heading {
+        font-size: 4rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        animation: fadeInDown 1s ease;
+      }
+      
+      /* About Section */
+      .about, .mission {
+        max-width: 1200px;
+        margin: 5rem auto;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+      }
+      
+      .about .left, .mission .right {
+        flex: 1;
+        animation: fadeInLeft 1s ease;
+      }
+      
+      .about .right, .mission .left {
+        flex: 1;
+        animation: fadeInRight 1s ease;
+      }
+      
+      .about h1, .mission h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--dark);
+        position: relative;
+      }
+      
+      .about h1:after, .mission h1:after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        border-radius: 2px;
+      }
+      
+      .about p, .mission p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--gray);
+        margin-top: 2rem;
+      }
+      
+      .about img, .mission img {
+        width: 100%;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        transition: transform 0.5s ease;
+      }
+      
+      .about img:hover, .mission img:hover {
+        transform: scale(1.03);
+      }
+      
+      /* Footer */
+      footer {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        font-size: 1rem;
+      }
+      
+      /* Animations */
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+        100% { transform: translateY(0px); }
+      }
+      
+      .floating {
+        animation: float 3s ease-in-out infinite;
+      }
+      
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .menu-toggle {
+          display: block;
+        }
+        
+        .menu {
+          position: fixed;
+          top: 80px;
+          left: -100%;
+          width: 80%;
+          height: calc(100vh - 80px);
+          background: white;
+          flex-direction: column;
+          align-items: center;
+          padding: 2rem 0;
+          transition: all 0.5s ease;
+        }
+        
+        .menu.active {
+          left: 0;
+        }
+        
+        .menu li a {
+          color: var(--dark);
+        }
+        
+        .dropdown-menu {
+          position: static;
+          width: 100%;
+          box-shadow: none;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          display: none;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+          display: block;
+        }
+        
+        .about, .mission {
+          flex-direction: column;
+        }
+        
+        .mission {
+          flex-direction: column-reverse;
+        }
+        
+        .heading {
+          font-size: 2.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="brandlogo">
+          <img src="../mainImages/logo.png" alt="HomeCrafters Logo" />
+        </div>
+        <span class="menu-toggle">&#9776;</span>
+        <ul class="menu">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="./contact.html">About Us</a></li>
+          <li><a href="./contact.html">Contact Us</a></li>
+          <li class="dropdown">
+            <a href="#">Products <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="./hardware.html">Hardware</a></li>
+              <li><a href="./electronic.html">Electronics</a></li>
+              <li><a href="./sanitry.html">Sanitary</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div>
+          <a href="./login.html" class="btnlog">LOGIN</a>
+          <a href="./login.html" class="btnSin">SIGN UP</a>
+        </div>
+      </nav>
+    </header>
+    
+    <div class="hero">
+      <div class="heading animate__animated animate__fadeInDown">About Us</div>
+    </div>
+
+    <div class="about">
+      <div class="left">
+        <h1 class="animate__animated animate__fadeInLeft">Build Your Dream Home</h1>
+        <p class="animate__animated animate__fadeInLeft animate__delay-1s">
+          HomeCrafters is your one-stop destination for all things related to
+          home building and renovation. Our platform connects you with
+          experienced contractors who specialize in constructing high-quality
+          homes tailored to your specific needs. Whether you're looking to build
+          a new house or remodel your current space, our expert contractors
+          provide reliable and affordable services. In addition to construction,
+          we also offer access to top-tier hardware stores, ensuring you have
+          all the materials you need for any project. From foundations to
+          finishes, HomeCrafters supports you every step of the way. We
+          prioritize customer satisfaction and quality workmanship, making your
+          dream home a reality.
+        </p>
+      </div>
+      <div class="right floating">
+        <img src="../mainImages/bk8.jpg" alt="Dream Home" class="animate__animated animate__fadeInRight" />
+      </div>
+    </div>
+
+    <div class="mission">
+      <div class="left floating">
+        <img src="../mainImages/bk1.jpeg" alt="Power Tools" class="animate__animated animate__fadeInLeft" />
+      </div>
+      <div class="right">
+        <h1 class="animate__animated animate__fadeInRight">Power with the Best Tools</h1>
+        <p class="animate__animated animate__fadeInRight animate__delay-1s">
+          HomeCrafters offers a wide range of high-quality tools to help you
+          with every stage of your building or renovation project. Whether
+          you're a professional contractor or a DIY enthusiast, our collection
+          includes everything from power tools to hand tools, ensuring you have
+          the right equipment for the job. We partner with trusted hardware
+          stores to provide durable and reliable tools that make your work
+          easier and more efficient. With HomeCrafters, you'll find the perfect
+          tools to tackle any challenge, big or small. We aim to empower you to
+          complete your projects with precision and confidence. Explore our
+          selection and get the tools you need today!
+        </p>
+      </div>
+    </div>
+
+    <footer class="animate__animated animate__fadeInUp">
+      <div class="container">
+        <p>&copy; 2025 HomeCrafters. All rights reserved.</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      document.querySelector('.menu-toggle').addEventListener('click', function() {
+        document.querySelector('.menu').classList.toggle('active');
+      });
+      
+      // Scroll animations
+      window.addEventListener('scroll', function() {
+        const elements = document.querySelectorAll('.about, .mission');
+        elements.forEach(element => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.3;
+          
+          if(elementPosition < screenPosition) {
+            element.style.opacity = '1';
+          }
+        });
+      });
+      
+      // Smooth scrolling for all links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
