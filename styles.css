@@ -6,6 +6,7 @@ body {
 img{
   width: 100%;
   height: auto;
+  margin-top: 1rem;
 }
 header {
   background-color: white;
@@ -253,6 +254,7 @@ width: 6rem;
   padding: 0;
   outline: none;
   border: none;
+ 
 }
 
 .about{
